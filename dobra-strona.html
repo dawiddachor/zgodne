@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mój Ogród – Strona przyjazna użytkownikom</title>
+  <style>
+    /* === ZMIENNE KOLORÓW – spokojna paleta === */
+    :root {
+      --bg:         #f5f2ec;
+      --surface:    #ffffff;
+      --border:     #d9d3c8;
+      --text:       #2e2b27;
+      --text-light: #6b6560;
+      --accent:     #4a7c59;
+      --accent-dim: #d6e8dd;
+      --link:       #2d6a8a;
+      --focus:      #2d6a8a;
+      --warn:       #7a5c00;
+      --warn-bg:    #fdf5dc;
+    }
+
+    /* === RESET === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* === UKRYJ ANIMACJE dla osób, które tego wolą === */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+
+    /* === BAZA === */
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.125rem;        /* 18px – dobrze czytelny */
+      line-height: 1.8;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* === POMIŃ DO TREŚCI – dla klawiaturowców === */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--focus);
+      color: #fff;
+      padding: .5rem 1rem;
+      border-radius: 0 0 6px 0;
+      font-size: 1rem;
+      z-index: 999;
+    }
+    .skip-link:focus { left: 0; }
+
+    /* === NAGŁÓWEK === */
+    header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--border);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo-icon {
+      width: 44px; height: 44px;
+      background: var(--accent-dim);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .logo-text { font-size: 1.4rem; font-weight: bold; color: var(--accent); }
+    .logo-sub  { font-size: .85rem; color: var(--text-light); margin-top: .1rem; }
+
+    /* === NAWIGACJA === */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: .5rem 2rem;
+    }
+    nav ul { list-style: none; display: flex; gap: 0; flex-wrap: wrap; }
+    nav a {
+      display: block;
+      padding: .6rem 1.2rem;
+      color: var(--link);
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      border: 2px solid transparent;
+      transition: background .15s, border-color .15s;
+    }
+    nav a:hover  { background: var(--accent-dim); }
+    nav a:focus  { outline: none; border-color: var(--focus); background: var(--accent-dim); }
+    nav a[aria-current="page"] {
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-weight: bold;
+      border-color: var(--accent);
+    }
+
+    /* === POWIADOMIENIE === */
+    .notice {
+      background: var(--warn-bg);
+      border-left: 4px solid var(--warn);
+      padding: .75rem 1.25rem;
+      font-size: .95rem;
+      color: var(--warn);
+    }
+    .notice strong { display: block; margin-bottom: .2rem; }
+
+    /* === UKŁAD === */
+    .wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* === HERO === */
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 1.9rem;
+      color: var(--accent);
+      margin-bottom: .6rem;
+      line-height: 1.3;
+    }
+    .hero p { color: var(--text); max-width: 600px; }
+    .hero .tag {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-size: .85rem;
+      padding: .25rem .75rem;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    /* === KARTY === */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .card-icon { font-size: 2rem; margin-bottom: .6rem; }
+    .card h2 { font-size: 1.1rem; margin-bottom: .4rem; color: var(--text); }
+    .card p  { font-size: .95rem; color: var(--text-light); line-height: 1.6; }
+
+    /* === TEKST GŁÓWNY === */
+    .article {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .article h2 {
+      font-size: 1.35rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding-bottom: .4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .article p { margin-bottom: 1rem; }
+    .article ul {
+      padding-left: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .article li { margin-bottom: .4rem; }
+
+    /* === PRZYCISK === */
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: .7rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1rem;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .btn:hover { background: #3a6648; }
+    .btn:focus { outline: none; border-color: var(--focus); box-shadow: 0 0 0 3px rgba(45,106,138,.35); }
+
+    /* === STOPKA === */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: .9rem;
+      color: var(--text-light);
+    }
+
+    /* === FOKUS widoczny wszędzie === */
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Pomiń nawigację – dla czytników ekranu i klawiatury -->
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <!-- NAGŁÓWEK -->
+  <header role="banner">
+    <div class="logo-icon" aria-hidden="true">🌿</div>
+    <div>
+      <div class="logo-text">Mój Ogród</div>
+      <div class="logo-sub">Porady dla każdego ogrodnika</div>
+    </div>
+  </header>
+
+  <!-- NAWIGACJA -->
+  <nav aria-label="Główna nawigacja">
+    <ul>
+      <li><a href="#main" aria-current="page">Strona główna</a></li>
+      <li><a href="#uprawy">Uprawy</a></li>
+      <li><a href="#pory-roku">Pory roku</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- POWIADOMIENIE (statyczne, bez migania) -->
+  <div class="notice" role="status" aria-live="polite">
+    <strong>📅 Wskazówka na maj:</strong>
+    Teraz dobry czas na sadzenie pomidorów i ogórków.
+  </div>
+
+  <!-- TREŚĆ GŁÓWNA -->
+  <main id="main" class="wrapper" tabindex="-1">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading">Witaj w Moim Ogrodzie</h1>
+      <p>
+        Tu znajdziesz proste i jasne porady ogrodnicze.
+        Każda wskazówka jest napisana zrozumiałym językiem,
+        bez zbędnych terminów specjalistycznych.
+      </p>
+      <span class="tag">✅ Strona przykładowa – dobre praktyki</span>
+    </section>
+
+    <!-- KARTY -->
+    <section aria-labelledby="karty-heading">
+      <h2 id="karty-heading" style="font-size:1.2rem;margin-bottom:1rem;color:var(--text)">Co chcesz zrobić?</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">🥕</div>
+          <h2>Warzywa</h2>
+          <p>Dowiedz się, kiedy i jak sadzić popularne warzywa w Polsce.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">🌸</div>
+          <h2>Kwiaty</h2>
+          <p>Wybierz rośliny pasujące do Twojego ogrodu i gleby.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">💧</div>
+          <h2>Podlewanie</h2>
+          <p>Jak często i ile wody potrzebują Twoje rośliny.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTYKUŁ -->
+    <section class="article" id="uprawy" aria-labelledby="art-heading">
+      <h2 id="art-heading">Jak zacząć ogród warzywny?</h2>
+
+      <p>
+        Ogród warzywny to świetny sposób na świeże jedzenie przez cały sezon.
+        Nie musisz mieć dużego miejsca – wystarczy nawet balkon lub kilka donic.
+      </p>
+
+      <h3 style="margin:.8rem 0 .4rem;font-size:1.05rem;">Potrzebujesz trzech rzeczy:</h3>
+      <ul>
+        <li>🌞 <strong>Słońce</strong> – co najmniej 6 godzin dziennie</li>
+        <li>🪣 <strong>Woda</strong> – regularne podlewanie, najlepiej rano</li>
+        <li>🪱 <strong>Dobra gleba</strong> – luźna, próchnicza, lekko wilgotna</li>
+      </ul>
+
+      <p>
+        Najłatwiejsze warzywa do uprawy to rzodkiewki, sałata, szpinak i fasolka szparagowa.
+        Jeśli zaczynasz, wybierz jedno lub dwa warzywa i stopniowo powiększaj ogródek.
+      </p>
+
+      <a class="btn" href="#kontakt">Mam pytanie – napisz do nas</a>
+    </section>
+
+  </main>
+
+  <!-- STOPKA -->
+  <footer role="contentinfo" id="kontakt">
+    <p>© 2026 Mój Ogród &nbsp;|&nbsp; Strona stworzona z myślą o dostępności</p>
+    <p style="margin-top:.4rem;">
+      Kontakt: <a href="mailto:kontakt@mojogrod.pl" style="color:var(--link);">kontakt@mojogrod.pl</a>
+    </p>
+  </footer>
+
+</body>
+</html>
