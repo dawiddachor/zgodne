@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Przyjazna Strona</title>
+
+  <style>
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f3f5f7;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #dbe7ee;
+      padding: 30px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #20435c;
+    }
+
+    nav {
+      background-color: #c9dbe7;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #20435c;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    section {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      color: #20435c;
+    }
+
+    button {
+      background-color: #5b8aa0;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #49778d;
+    }
+
+    footer {
+      background-color: #dbe7ee;
+      text-align: center;
+      padding: 15px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Przyjazna Strona Internetowa</h1>
+    <p>Projekt zgodny z zasadami accessibility oraz UX.</p>
+  </header>
+
+  <nav>
+    <a href="#sekcja1">Lorem</a>
+    <a href="#sekcja2">Ipsum</a>
+    <a href="#sekcja3">Dolor</a>
+  </nav>
+
+  <main>
+
+    <section id="sekcja1">
+      <h2>Lorem Ipsum</h2>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      </p>
+    </section>
+
+    <section id="sekcja2">
+      <h2>Dolor Sit</h2>
+
+      <ul>
+        <li>Lorem ipsum dolor sit amet</li>
+        <li>Consectetur adipiscing elit</li>
+        <li>Sed do eiusmod tempor</li>
+        <li>Ut labore et dolore magna</li>
+      </ul>
+
+      <p>
+        Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
+        Nullam varius, turpis et commodo pharetra, est eros bibendum elit.
+      </p>
+    </section>
+
+    <section id="sekcja3">
+      <h2>Amet Consectetur</h2>
+
+      <p>
+        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+      </p>
+
+      <button>Przycisk</button>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>2026 - Projekt demonstracyjny</p>
+  </footer>
+
+</body>
+</html>
