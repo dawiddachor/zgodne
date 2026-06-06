@@ -175,18 +175,57 @@
     }
     .article li { margin-bottom: .4rem; }
 
+    /* === FORMULARZ KONTAKTOWY (Nowość) === */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.85rem;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 1rem;
+      background: var(--surface);
+      color: var(--text);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px rgba(45,106,138,.35);
+    }
+    .form-hint {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 0.4rem;
+    }
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
     /* === PRZYCISK === */
     .btn {
       display: inline-block;
       background: var(--accent);
       color: #fff;
-      padding: .7rem 1.5rem;
+      padding: .85rem 1.75rem;
       border-radius: 6px;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 1.05rem;
       border: 2px solid transparent;
       cursor: pointer;
       transition: background .15s;
+      font-weight: bold;
+      font-family: inherit;
     }
     .btn:hover { background: #3a6648; }
     .btn:focus { outline: none; border-color: var(--focus); box-shadow: 0 0 0 3px rgba(45,106,138,.35); }
@@ -227,7 +266,6 @@
     <ul>
       <li><a href="#main" aria-current="page">Strona główna</a></li>
       <li><a href="#uprawy">Uprawy</a></li>
-      <li><a href="#pory-roku">Pory roku</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
   </nav>
@@ -295,16 +333,43 @@
         Jeśli zaczynasz, wybierz jedno lub dwa warzywa i stopniowo powiększaj ogródek.
       </p>
 
-      <a class="btn" href="#kontakt">Mam pytanie – napisz do nas</a>
+      <a class="btn" href="#kontakt">Przejdź do formularza kontaktowego</a>
+    </section>
+
+    <!-- FORMULARZ KONTAKTOWY -->
+    <section class="article" id="kontakt" aria-labelledby="form-heading">
+      <h2 id="form-heading">Napisz do nas</h2>
+      <p>Masz pytania dotyczące prowadzenia ogrodu? Wypełnij poniższy formularz, a chętnie Ci pomożemy.</p>
+
+      <form action="#" method="POST">
+        
+        <div class="form-group">
+          <label for="imie" class="form-label">Imię i nazwisko (wymagane)</label>
+          <input type="text" id="imie" name="imie" class="form-control" required aria-required="true" autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Adres e-mail (wymagane)</label>
+          <span id="email-hint" class="form-hint">Na ten adres prześlemy naszą odpowiedź.</span>
+          <input type="email" id="email" name="email" class="form-control" required aria-required="true" aria-describedby="email-hint" autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="wiadomosc" class="form-label">Twoja wiadomość (wymagane)</label>
+          <textarea id="wiadomosc" name="wiadomosc" class="form-control" required aria-required="true"></textarea>
+        </div>
+
+        <button type="submit" class="btn">Wyślij wiadomość</button>
+      </form>
     </section>
 
   </main>
 
   <!-- STOPKA -->
-  <footer role="contentinfo" id="kontakt">
+  <footer role="contentinfo">
     <p>© 2026 Mój Ogród &nbsp;|&nbsp; Strona stworzona z myślą o dostępności</p>
     <p style="margin-top:.4rem;">
-      Kontakt: <a href="mailto:kontakt@mojogrod.pl" style="color:var(--link);">kontakt@mojogrod.pl</a>
+      Bezpośredni kontakt: <a href="mailto:kontakt@mojogrod.pl" style="color:var(--link);">kontakt@mojogrod.pl</a>
     </p>
   </footer>
 
