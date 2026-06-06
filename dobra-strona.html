@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mój Ogród – Strona przyjazna użytkownikom</title>
   <style>
-    /* === ZMIENNE KOLORÓW – spokojna paleta === */
     :root {
       --bg:         #f5f2ec;
       --surface:    #ffffff;
@@ -20,25 +19,21 @@
       --warn-bg:    #fdf5dc;
     }
 
-    /* === RESET === */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* === UKRYJ ANIMACJE dla osób, które tego wolą === */
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; }
     }
 
-    /* === BAZA === */
     body {
       font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.125rem;        /* 18px – dobrze czytelny */
+      font-size: 1.125rem;
       line-height: 1.8;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
     }
 
-    /* === POMIŃ DO TREŚCI – dla klawiaturowców === */
     .skip-link {
       position: absolute;
       left: -9999px;
@@ -52,7 +47,6 @@
     }
     .skip-link:focus { left: 0; }
 
-    /* === NAGŁÓWEK === */
     header {
       background: var(--surface);
       border-bottom: 2px solid var(--border);
@@ -72,7 +66,6 @@
     .logo-text { font-size: 1.4rem; font-weight: bold; color: var(--accent); }
     .logo-sub  { font-size: .85rem; color: var(--text-light); margin-top: .1rem; }
 
-    /* === NAWIGACJA === */
     nav {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -98,7 +91,6 @@
       border-color: var(--accent);
     }
 
-    /* === POWIADOMIENIE === */
     .notice {
       background: var(--warn-bg);
       border-left: 4px solid var(--warn);
@@ -108,14 +100,12 @@
     }
     .notice strong { display: block; margin-bottom: .2rem; }
 
-    /* === UKŁAD === */
     .wrapper {
       max-width: 860px;
       margin: 0 auto;
       padding: 2rem 1.5rem;
     }
 
-    /* === HERO === */
     .hero {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -141,7 +131,6 @@
       font-weight: bold;
     }
 
-    /* === KARTY === */
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; }
     .card {
       background: var(--surface);
@@ -153,7 +142,6 @@
     .card h2 { font-size: 1.1rem; margin-bottom: .4rem; color: var(--text); }
     .card p  { font-size: .95rem; color: var(--text-light); line-height: 1.6; }
 
-    /* === TEKST GŁÓWNY === */
     .article {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -175,7 +163,6 @@
     }
     .article li { margin-bottom: .4rem; }
 
-    /* === FORMULARZ KONTAKTOWY (Nowość) === */
     .form-group {
       margin-bottom: 1.5rem;
     }
@@ -212,7 +199,6 @@
       min-height: 120px;
     }
 
-    /* === PRZYCISK === */
     .btn {
       display: inline-block;
       background: var(--accent);
@@ -230,7 +216,21 @@
     .btn:hover { background: #3a6648; }
     .btn:focus { outline: none; border-color: var(--focus); box-shadow: 0 0 0 3px rgba(45,106,138,.35); }
 
-    /* === STOPKA === */
+    .success-box {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .success-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .success-title {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
     footer {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -240,7 +240,6 @@
       color: var(--text-light);
     }
 
-    /* === FOKUS widoczny wszędzie === */
     :focus-visible {
       outline: 3px solid var(--focus);
       outline-offset: 3px;
@@ -249,10 +248,8 @@
 </head>
 <body>
 
-  <!-- Pomiń nawigację – dla czytników ekranu i klawiatury -->
   <a class="skip-link" href="#main">Przejdź do treści</a>
 
-  <!-- NAGŁÓWEK -->
   <header role="banner">
     <div class="logo-icon" aria-hidden="true">🌿</div>
     <div>
@@ -261,7 +258,6 @@
     </div>
   </header>
 
-  <!-- NAWIGACJA -->
   <nav aria-label="Główna nawigacja">
     <ul>
       <li><a href="#main" aria-current="page">Strona główna</a></li>
@@ -270,16 +266,13 @@
     </ul>
   </nav>
 
-  <!-- POWIADOMIENIE (statyczne, bez migania) -->
   <div class="notice" role="status" aria-live="polite">
     <strong>📅 Wskazówka na maj:</strong>
     Teraz dobry czas na sadzenie pomidorów i ogórków.
   </div>
 
-  <!-- TREŚĆ GŁÓWNA -->
   <main id="main" class="wrapper" tabindex="-1">
 
-    <!-- HERO -->
     <section class="hero" aria-labelledby="hero-heading">
       <h1 id="hero-heading">Witaj w Moim Ogrodzie</h1>
       <p>
@@ -290,7 +283,6 @@
       <span class="tag">✅ Strona przykładowa – dobre praktyki</span>
     </section>
 
-    <!-- KARTY -->
     <section aria-labelledby="karty-heading">
       <h2 id="karty-heading" style="font-size:1.2rem;margin-bottom:1rem;color:var(--text)">Co chcesz zrobić?</h2>
       <div class="cards">
@@ -312,7 +304,6 @@
       </div>
     </section>
 
-    <!-- ARTYKUŁ -->
     <section class="article" id="uprawy" aria-labelledby="art-heading">
       <h2 id="art-heading">Jak zacząć ogród warzywny?</h2>
 
@@ -336,42 +327,94 @@
       <a class="btn" href="#kontakt">Przejdź do formularza kontaktowego</a>
     </section>
 
-    <!-- FORMULARZ KONTAKTOWY -->
     <section class="article" id="kontakt" aria-labelledby="form-heading">
       <h2 id="form-heading">Napisz do nas</h2>
-      <p>Masz pytania dotyczące prowadzenia ogrodu? Wypełnij poniższy formularz, a chętnie Ci pomożemy.</p>
+      
+      <div id="form-wrapper">
+        <p>Masz pytania dotyczące prowadzenia ogrodu? Wypełnij poniższy formularz, a chętnie Ci pomożemy.</p>
 
-      <form action="#" method="POST">
-        
-        <div class="form-group">
-          <label for="imie" class="form-label">Imię i nazwisko (wymagane)</label>
-          <input type="text" id="imie" name="imie" class="form-control" required aria-required="true" autocomplete="name">
-        </div>
+        <form id="contact-form" action="#" method="POST" novalidate>
+          
+          <div class="form-group">
+            <label for="imie" class="form-label">Imię i nazwisko (wymagane)</label>
+            <input type="text" id="imie" name="imie" class="form-control" required aria-required="true" autocomplete="name">
+          </div>
 
-        <div class="form-group">
-          <label for="email" class="form-label">Adres e-mail (wymagane)</label>
-          <span id="email-hint" class="form-hint">Na ten adres prześlemy naszą odpowiedź.</span>
-          <input type="email" id="email" name="email" class="form-control" required aria-required="true" aria-describedby="email-hint" autocomplete="email">
-        </div>
+          <div class="form-group">
+            <label for="email" class="form-label">Adres e-mail (wymagane)</label>
+            <span id="email-hint" class="form-hint">Na ten adres prześlemy naszą odpowiedź.</span>
+            <input type="email" id="email" name="email" class="form-control" required aria-required="true" aria-describedby="email-hint" autocomplete="email">
+          </div>
 
-        <div class="form-group">
-          <label for="wiadomosc" class="form-label">Twoja wiadomość (wymagane)</label>
-          <textarea id="wiadomosc" name="wiadomosc" class="form-control" required aria-required="true"></textarea>
-        </div>
+          <div class="form-group">
+            <label for="wiadomosc" class="form-label">Twoja wiadomość (wymagane)</label>
+            <textarea id="wiadomosc" name="wiadomosc" class="form-control" required aria-required="true"></textarea>
+          </div>
 
-        <button type="submit" class="btn">Wyślij wiadomość</button>
-      </form>
+          <button type="submit" class="btn">Wyślij wiadomość</button>
+        </form>
+      </div>
+
+      <div id="success-message" class="success-box" aria-live="polite">
+        <div class="success-icon" aria-hidden="true">🌱</div>
+        <h3 class="success-title">Dziękujemy za przesłanie formularza!</h3>
+        <p style="margin-bottom: 2rem;">Twoja wiadomość została do nas pomyślnie dostarczona. Skontaktujemy się z Tobą wkrótce.</p>
+        <a href="#main" id="btn-return" class="btn">Powrót na stronę główną</a>
+      </div>
+
     </section>
 
   </main>
 
-  <!-- STOPKA -->
   <footer role="contentinfo">
-    <p>© 2026 Mój Ogród &nbsp;|&nbsp; Strona stworzona z myślą o dostępności</p>
+    <p>© 2026 Mój Ogród</p>
     <p style="margin-top:.4rem;">
       Bezpośredni kontakt: <a href="mailto:kontakt@mojogrod.pl" style="color:var(--link);">kontakt@mojogrod.pl</a>
     </p>
   </footer>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("contact-form");
+      const formWrapper = document.getElementById("form-wrapper");
+      const successMessage = document.getElementById("success-message");
+      const btnReturn = document.getElementById("btn-return");
+
+      const inputs = form.querySelectorAll("input, textarea");
+
+      inputs.forEach(input => {
+        input.addEventListener("invalid", function(e) {
+          e.preventDefault();
+          if (this.validity.valueMissing) {
+            this.setCustomValidity("To pole jest wymagane.");
+          } else if (this.validity.typeMismatch && this.type === 'email') {
+            this.setCustomValidity("Wprowadź poprawny adres e-mail.");
+          } else {
+            this.setCustomValidity("");
+          }
+          this.reportValidity();
+        });
+
+        input.addEventListener("input", function() {
+          this.setCustomValidity("");
+        });
+      });
+
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        if (form.checkValidity()) {
+          formWrapper.style.display = "none";
+          successMessage.style.display = "block";
+        }
+      });
+
+      btnReturn.addEventListener("click", function(e) {
+        form.reset();
+        successMessage.style.display = "none";
+        formWrapper.style.display = "block";
+      });
+    });
+  </script>
 </body>
 </html>
